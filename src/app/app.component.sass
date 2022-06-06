@@ -1,0 +1,23 @@
+$font-stack: 'Open Sans', sans-serif
+$bold-weight: 700
+
+body
+  font: 100% $font-stack
+
+.wrapper
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  grid-gap: 0
+  grid-auto-rows: minmax(100px, auto)
+  height: 100%
+
+.wrapper > .col
+  grid-column: 1 / 2
+  grid-row: 1
+
+.mat-toolbar
+  background: white
+  color: #0A2240
+
+.flexExpand
+    flex: 1 1 auto
