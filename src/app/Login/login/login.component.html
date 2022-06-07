@@ -1,24 +1,38 @@
-<div style="width: 66%; margin-left: 17%;">
-  <form style="width: 100%;">
+<div style="width: 60%; margin-left: 20%;">
+  <div>
+    <h1 class="titulo-form">Crear cuenta</h1>
+    <p class="descript-form">Te damos la bienvenida a la forma más fácil y accesible de estrenar un auto</p>
+  </div>
+  <form style="width: 100%;" id="form-login">
     <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>Correo electrónico</mat-label>
-      <input matInput>
+      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher">
       <mat-icon matSuffix></mat-icon>
       <mat-hint></mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('email') || emailFormControl.hasError('required')">
+        Ingresar un correo válido
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>Contraseña</mat-label>
-      <input matInput type="password">
-      <mat-icon matSuffix>visibility</mat-icon>
+      <input matInput [attr.type]="statusEye? 'password': 'text'">
+      <mat-icon matSuffix (click)="toogleEye()">{{ statusEye? 'visibility': 'visibility_off' }}</mat-icon>
       <mat-hint></mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>Celular</mat-label>
-      <input matInput>
+      <input matInput [formControl]="phoneFormControl" [errorStateMatcher]="matcher">
       <mat-icon matSuffix></mat-icon>
-      <mat-hint></mat-hint>
+      <mat-hint>Número a 10 dígitos</mat-hint>
+      <mat-error *ngIf="phoneFormControl.hasError('min') || phoneFormControl.hasError('max')">
+        Ingresa un número válido
+      </mat-error>
     </mat-form-field>
-    <mat-checkbox>Acepto los <a href="#" class="link-figma">Términos, Condiciones y Políticas de Privacidad.</a></mat-checkbox>
-    <button type="submit" style="width: 100%;" mat-raised-button color="primary">Crear cuenta</button>
+    <mat-checkbox class="descrip-check" color="primary">Acepto los
+      <a href="#" class="link-figma">
+        <strong>Términos, Condiciones y Políticas de Privacidad.</strong>
+      </a>
+    </mat-checkbox>
+    <button type="submit" class="fill-btn" mat-raised-button color="primary">Crear cuenta</button>
   </form>
 </div>
